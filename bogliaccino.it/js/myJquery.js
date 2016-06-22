@@ -89,5 +89,54 @@ mioElem.find('li').each(function(index, el) {
 
 
 
+
+
+		$("#btn1").click(function(event) {
+			
+			//$("#lateraleDx img").hide("slow");
+			//$("#lateraleDx img").show("fast", function(){});
+			//$("#lateraleDx img").toggle(3000);
+			// $("#lateraleDx img").fadeTo("fast", 0.3)
+   //                          .fadeTo("fast", 1.0)
+   //                          .fadeTo("fast", 0.3)
+   //                          .fadeTo("fast", 1.0);
+		
+   				// $("#lateraleDx img").slideUp(500);
+   				 $("#lateraleSx p").animate({fontSize:"10px", textAlign:"right"}, 1500);
+
+		});
+
+
+		$("#btn2").click(function(event) {
+ 				 $("#lateraleSx p").animate({fontSize:"20px", textAlign:"left"}, 1500);
+
+
+   				 //$("#lateraleDx img").slideDown(500).fadeTo("fast", 0.3);
+			// $("#lateraleDx img").fadeOut(300);
+			
+
+		});
+
+
+
+
+
+		// $("#primoBox").on('mouseover mouseleave',  function(event) {
+		// 	//event.preventDefault();
+		// 	$("#lateraleDx img").toggle(3000);
+		// 	/* Act on the event */
+		// });
+		// $("#btn2").off('mouseover mouseleave',  function(event) {
+		// 	//event.preventDefault();
+		// 	$("#lateraleDx img").show(3000);
+		// 	/* Act on the event */
+		// });
+
+	$("#editText1").on("keypress", function(e){
+		alert(e.charCode);
+		$("#primoParagrafo").text(String.fromCharCode(e.charCode));
+	});
+
+
 });
 
