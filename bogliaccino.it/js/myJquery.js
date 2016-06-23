@@ -92,7 +92,27 @@ mioElem.find('li').each(function(index, el) {
 
 
 		$("#btn1").click(function(event) {
-			
+			//mi collego al file php/json
+			$.getJSON( "http://localhost/coding2016/aula_json.php", function( data ) {
+				//creo un array js vuoto
+			  var items = [];
+			  //per ogni elemento del json inserisco un item nell'array JS
+			  $.each( data.elenco_allievi, function( key, val ) {
+			    items.push( "<li id='" + key + "'>" + val.nome+ val.cognome + "</li>" );
+			  });
+			 
+
+			 //creo un elemento ul e lo riempio con il contenuto dell'array JS
+			 //infine aggiungo il nuovo elemento al dive lateraleSx della mia pagina
+			  $( "<ul/>", {
+			    "class": "my-new-list",
+			    html: items.join( "" )
+			  }).appendTo( "#lateraleSx" );
+			});
+
+
+
+
 			//$("#lateraleDx img").hide("slow");
 			//$("#lateraleDx img").show("fast", function(){});
 			//$("#lateraleDx img").toggle(3000);
@@ -102,7 +122,11 @@ mioElem.find('li').each(function(index, el) {
    //                          .fadeTo("fast", 1.0);
 		
    				// $("#lateraleDx img").slideUp(500);
-   				 $("#lateraleSx p").animate({fontSize:"10px", textAlign:"right"}, 1500);
+   				// $("#lateraleSx p").animate({fontSize:"10px", textAlign:"right"}, 1500);
+
+
+   				$
+
 
 		});
 
@@ -136,6 +160,9 @@ mioElem.find('li').each(function(index, el) {
 		alert(e.charCode);
 		$("#primoParagrafo").text(String.fromCharCode(e.charCode));
 	});
+
+
+
 
 
 });
