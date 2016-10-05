@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<title>todo list</title>
+
+	<style type="text/css">
+	body {font-family: Arial, sans-serif;}
+	#listPage { 
+		width: 200px;
+		height: 400px;
+		border: 1px solid black;
+	 } 
+	</style>
+</head>
+<body>
+	<div id="listPage">
+		<!-- h1 -->
+		<h1>todo list</h1>
+		<div id="formArea">
+			<!-- input text e button -->
+			<label>cosa devi fare
+				<input type="text" id="todoItem" />
+			</label>
+			<button type="button" id="addIt" >Aggiungi</button>
+			<br/>
+			<br/>
+			<button type="button" id="printIt">Stampa la lista</button>
+		</div>
+		<!-- visualizza risultati -->
+		<ul id="todoList"></ul>
+	</div>	
+<script type="text/javascript">
+	var printButton = document.getElementById("printIt");
+	printButton.addEventListener("click", stampaElenco);
+
+	var addButton = document.getElementById("addIt");
+	addButton.addEventListener("click", aggiungiElemento);
+
+	var cosaFare = document.getElementById("todoItem");
+	var myList = [];
+	
+	var todoList = document.getElementById("todoList");
+	var formArea = document.getElementById("formArea");
+
+	function stampaElenco () {
+
+		cosaFare.style.display = "none";
+		todoList.className = "print";
+
+		formArea.innerHTML = "";
+
+		myList.sort();
+		todoList.innerHTML = "";
+		for (var i = 0; i < myList.length; i++) {
+			todoList.innerHTML += "<li>" + myList[i] + "</li>";
+		};
+
+
+		console.log("stampa elenco");
+	}
+
+	function aggiungiElemento () {
+		
+		inserisciLista(cosaFare);
+		resetInput(cosaFare);
+		console.log("fatto");
+	}
+
+	function inserisciLista(_cosaFare) {
+		myList.push(_cosaFare.value);
+		var newListItem = document.createElement("li");
+		newListItem.innerHTML = myList[myList.length - 1];
+
+		todoList.appendChild(newListItem);
+	}
+
+	function resetInput (inputToReset) {
+		inputToReset.value = "";
+	}
+</script>
+</body>
+</html>
