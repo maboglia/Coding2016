@@ -1,0 +1,105 @@
+<html>
+<head>
+	<title>quizzone</title>
+</head>
+<body>
+	<h1>Mio Quizzone</h1>
+
+<button onclick="startQuiz()">Start Quiz</button>
+
+<h1 id="score" style="visibility:hidden;" ></h1>
+
+<div id="domanda"  style="visibility:hidden;">
+	<input id="number" type="text"  style="visibility:hidden;" />
+	<h1 id="title"></h1>
+	<input id="answer" type="text" />
+	<button onclick="checkAnswer()">Invia</button>
+
+	<div id="next">
+		<h1 id="result"></h1>
+		<button onclick="askQuestion()">Next</button>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	var q = 0;
+	var score = 0;
+
+	var domande = [
+		{title : 'quanti giorni ci sono in un anno non bisestile?', answer: '365' },
+		{title:'quanti grammi ci sono in un etto?', answer:'100'},
+		{title:'quanti pianeti ci sono nel sistema solare?', answer:'8'}
+	];
+
+	var startQuiz = function () {
+		score = 0;
+		q=0;
+		hideScore();
+		askQuestion();	
+
+	};
+
+	var showScore = function  () {
+				hideQuestion();
+		hideAnswer();
+
+
+		document.getElementById('score').innerHTML='Il tuo punteggio attuale è: ' + score;
+		document.getElementById('score').style.visibility = 'visible';
+
+	}
+
+	var hideScore = function  () {
+
+		document.getElementById('score').innerHTML='';
+		document.getElementById('score').style.visibility = 'hidden';
+	};
+
+	var showQuestion = function  () {
+		document.getElementById('domanda').style.visibility = 'visible';	
+	};
+
+	var hideQuestion = function  () {
+		document.getElementById('domanda').style.visibility = 'hidden';	
+	};
+
+
+	var hideAnswer = function  () {
+		document.getElementById('next').style.visibility = 'hidden';	
+	};
+
+	var askQuestion = function  () {
+		if (q == domande.length){
+			showScore();
+		}	else {
+			document.getElementById('number').value = q;
+			document.getElementById('title').innerHTML = 'Domanda' + (q + 1) + ':  ' + domande[q].title;
+			document.getElementById('answer').value = '';
+			showQuestion();
+			hideAnswer();
+			q++;
+		}
+	};
+
+	var checkAnswer = function  () {
+		var q = document.getElementById('number').value;
+		var answer = document.getElementById('answer').value;
+
+		if (answer == domande[q].answer){
+			document.getElementById('result').innerHTML=('corretto, hai guadagnato un punto');
+			document.getElementById('result').style.color = 'green';
+			score++;
+		} else
+		{
+			document.getElementById('result').innerHTML=('hai sbagliato, la risposta corretta è ' + domande[q].answer);
+			document.getElementById('result').style.color = 'red';
+			score--;
+		}
+		document.getElementById('next').style.visibility = 'visible';
+	}
+
+</script>
+
+</body>
+</html>

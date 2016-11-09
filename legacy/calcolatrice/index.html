@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf-8" /> 
+	<title>calcolatrice</title>
+	<meta id= "viewport" content="width=device-width, initial-scale=1" />
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<style type="text/css">
+	.container{
+		padding: 20px;
+	}
+
+	#display{
+		width: 100%;
+		height: 45px;
+		background-color: #333;
+		color: lime;
+		font-size: 2em;
+		padding: 5px;
+		text-align: right;
+		margin-bottom: 25px;
+		overflow: hidden;
+	}
+
+	#miaCalc{
+		width:300px;
+		height: 400px;
+		background-color: lightblue;
+		padding: 5px;
+
+	}
+
+	.cbutton {
+		font-size: 2em;
+		width: 45px;
+		height: 45px;
+		padding: 4px;
+		margin: 5px;
+
+	}
+
+</style>
+</head>
+<body>
+
+
+	<div class="container">
+		<div id="miaCalc">
+			<div class="col-xs-12">
+				<div id="display">prova display</div>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="btn btn-primary cbutton">1</div>
+				<div class="btn btn-primary cbutton">2</div>
+				<div class="btn btn-primary cbutton">3</div>
+				<div class="btn btn-primary cbutton">+</div>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="btn btn-primary cbutton">4</div>
+				<div class="btn btn-primary cbutton">5</div>
+				<div class="btn btn-primary cbutton">6</div>
+				<div class="btn btn-primary cbutton">-</div>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="btn btn-primary cbutton">7</div>
+				<div class="btn btn-primary cbutton">8</div>
+				<div class="btn btn-primary cbutton">9</div>
+				<div class="btn btn-primary cbutton">*</div>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="btn btn-primary cbutton">C</div>
+				<div class="btn btn-primary cbutton">0</div>
+				<div class="btn btn-primary cbutton">=</div>
+				<div class="btn btn-primary cbutton">/</div>
+			</div>
+
+
+
+		</div>
+	</div>	
+
+
+
+
+
+
+	<script type="text/javascript">
+		//var myButton = document.getElementById("cbutton");
+		var myButton = document.getElementsByClassName("cbutton");
+		//output
+		var display = document.getElementById("display");
+		//per memorizzare i calcoli
+		var myCal = '';
+		//variabili booleane di controllo
+		var isStart = false;
+		var mySwitch = false;
+		var myOperatori = ["+","-","*","/"];
+
+			//ciclo for per i bottoni ---------INIZIO-----
+			for (var i = 0; i < myButton.length; i++) {
+
+				//registro un listener sul button
+				myButton[i].addEventListener("click", function (argument) {
+
+				//memorizzo il valore del tasto cliccato 	
+				var myValue = this.innerHTML;
+
+				if(isStart || myCal == "0"){
+					isStart = false;
+					myCal = '';
+				}
+
+
+				//operatori
+
+
+				if(	myValue=="+" || myValue=="-" || 
+					myValue=="*" || myValue=="/" 
+					){
+
+				if(mySwitch){
+					mySwitch = false;
+					myCal = eval(myCal);
+						if(myOperatori.indexOf(display.innerHTML.slice(-1))>-1){
+							myCal=myCal.substring(0,myCal.length -1);
+						}else{
+							myCal = eval(myCal);
+						}
+				}
+					mySwitch=true;
+
+				}
+
+				//intercetto i tasti =, C, e cifra
+
+				if(myValue == "="){
+					if(myOperatori.indexOf(display.innerHTML.slice(-1))==-1){
+					myCal = eval(myCal);
+					}
+					isStart = true;
+				} else if(myValue == "C"){
+					myCal = 0;
+					isStart = true;
+				} else{
+					myCal = myCal + myValue;
+				}
+
+				//spampo il valore sul display
+				display.innerHTML = myCal;
+					console.log("hai cliccato: " + myValue);
+				});
+			
+			};
+			//ciclo for per i bottoni ---------FINE-----
+
+
+
+	</script>
+
+</body>
+</html>

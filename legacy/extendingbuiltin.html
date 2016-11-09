@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 1</title>
+<script type="text/javascript">
+Array.prototype.longestElement = function() {
+	var maxLength = 0;
+	for (var i=0; i < this.length; i++) {
+		if (this[i].toString().length > maxLength)
+			maxLength = this[i].toString().length;
+	}
+	return maxLength;
+}
+
+var testArray = new Array(0,1, "test", "big string", new Date(), "an even bigger, better, stronger, faster string. It's probably the longest.");
+alert(testArray.longestElement());
+</script>
+</head>
+
+<body>
+</body>
+
+</html>
